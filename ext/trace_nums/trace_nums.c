@@ -36,7 +36,9 @@ threadptr_data_type(void)
 }
 
 #define ruby_threadptr_data_type *threadptr_data_type()
-#define ruby_current_thread ((rb_thread_t *)RTYPEDDATA_DATA(rb_thread_current()))
+//#define ruby_current_thread ((rb_thread_t *)RTYPEDDATA_DATA(rb_thread_current()))
+// FIXME: ruby 2.0.0 Error. undefined symbol: ruby_current_thread
+rb_thread_t *ruby_current_thread;
 
 /* Return a list of trace hook line numbers for the string in Ruby source src*/
 static VALUE 
@@ -99,6 +101,7 @@ lnums_for_str(VALUE self, VALUE src)
 
 void Init_trace_nums19(void)
 {
+    ruby_current_thread = ((rb_thread_t *)RTYPEDDATA_DATA(rb_thread_current()));
     mTraceLineNumbers = rb_define_module("TraceLineNumbers");
     rb_define_module_function(mTraceLineNumbers, "lnums_for_str", 
 			      lnums_for_str, 1);
