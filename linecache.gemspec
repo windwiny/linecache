@@ -46,7 +46,7 @@ example in a debugger where the same lines are shown many times.
     "test/test-tracelines.rb"
     ]
   s.extensions << "ext/trace_nums/extconf.rb"
-  s.add_dependency("ruby_core_source", ">= 0.1.4")
+  s.add_dependency("debugger-ruby_core_source", ">= 1.2.0")
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
